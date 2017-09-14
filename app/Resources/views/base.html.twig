@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta lang="hr">
+        <meta charset="UTF-8" />
+        <title>{% block title %}{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    </head>
+
+    <body>
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">My Simple Blog</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">New Blog</a></li>
+                        <li><a href="#">Edit Blog</a></li>
+                        <li><a href="#">Show Details</a></li>
+                        <li><a href="#">Delete Blog</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="container">
+            {% block body %}{% endblock %}
+            </div>
+
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+        <script src="{{ asset('js/my.jquery.js') }}">
+        {% block javascripts %}
+        {% endblock %}
+    </body>
+
+</html>

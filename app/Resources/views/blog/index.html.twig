@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Blog Index Page
+{% endblock %}
+
+{% block body %}
+    <table class="table" table-striped>
+        <thead>
+        <tr>
+            <th>Blog ID</th>
+            <th>Blog Title</th>
+            <th>Created by</th>
+            <th>Time created</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+            {% for blog in blogs %}
+            <tr id="tableRow" >
+                <td>{{ blog.id }}</td>
+                <td>{{ blog.title }}</td>
+                <td>{{ blog.createdBy }}</td>
+                <td>{{ blog.timeCreated | date('F j, Y, g:i a') }}</td>
+                <td><a href="#" class="btn btn-success btn-sm">Read</a>
+                    <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
