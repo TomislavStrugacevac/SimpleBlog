@@ -89,7 +89,67 @@ class SimpleBlogController extends Controller
      */
     public function editAction($id, Request $request)
     {
-        return $this->render('blog/edit.html.twig');
+        $blog = $this->getDoctrine()
+            ->getRepository('AppBundle:Blog')
+            ->find($id);
+
+        $blog->setTitle($blog->getTitle());
+        $blog->setBody($blog->getBody());
+        $blog->setCreatedBy($blog->getCreatedBy());
+        $blog->setTimeCreated($blog->getTimeCreated());
+
+        $form = $this->createFormBuilder($blog)
+            -> add( 'title', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom:15px'
+                ]])
+            -> add( 'body', TextareaType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom:15px'
+                ]])
+            -> add( 'createdBy', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom:15px'
+                ]])
+
+            -> add( 'submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary btn.md',
+                    'label' => 'Update Blog Entry'
+                ]])
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if( $form->isSubmitted() && $form->isValid() ){
+            $title = $form['title']->getData();
+            $body = $form['body']->getData();
+            $createdBy = $form['createdBy']->getData();
+            $timeCreated =$form['timeCreated']->getData();
+
+            $blog->setTitle($title);
+            $blog->setBody($body);
+            $blog->setCreatedBy($createdBy);
+            $blog->setTimeCreated($timeCreated);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($blog);
+            $em->flush();
+
+            $this->addFlash(
+                'notice', 'Blog updated'
+            );
+
+            return $this->redirectToRoute('blog_index');
+        }
+
+        return $this->render('blog/edit.html.twig', [
+            'blog' => $blog,
+            'form' => $form
+        ]);
     }
 
     /**
