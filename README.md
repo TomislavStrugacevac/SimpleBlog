@@ -1,6 +1,8 @@
 Screenshots: 
 
-https://imgur.com/a/NInDC
+https://imgur.com/6cN2MIx
+
+
 https://imgur.com/uLRIFH0
 
 
