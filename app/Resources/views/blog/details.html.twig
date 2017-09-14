@@ -1,1 +1,19 @@
-details
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Blog entry details
+{% endblock %}
+
+{% block body %}
+
+  <h1>
+      {{ blog.title }}
+  </h1>
+  <h5 id="blogDetails">created by: {{ blog.createdBy }}, time created: {{ blog.timeCreated| date('F j, Y, g:i a') }} </h5>
+    <br>
+    <p> {{ blog.body }}</p>
+
+
+
+
+{% endblock %}

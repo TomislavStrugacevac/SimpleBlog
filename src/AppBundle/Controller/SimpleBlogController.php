@@ -97,7 +97,12 @@ class SimpleBlogController extends Controller
      */
     public function detailsAction($id)
     {
-        return $this->render('blog/details.html.twig');
+        $blog = $this->getDoctrine()
+            ->getRepository('AppBundle:Blog')
+            ->find($id);
+        return $this->render('blog/details.html.twig', [
+            'blog' => $blog
+        ]);
     }
 
 }

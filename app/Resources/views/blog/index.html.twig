@@ -23,9 +23,9 @@
                 <td>{{ blog.title }}</td>
                 <td>{{ blog.createdBy }}</td>
                 <td>{{ blog.timeCreated | date('F j, Y, g:i a') }}</td>
-                <td><a href="#" class="btn btn-success btn-sm">Read</a>
-                    <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                <td><a href="/blog/details/{{ blog.id }}" class="btn btn-success btn-sm">Read</a>
+                    <a href="/blog/edit/{{ blog.id }}" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="/blog/delete/{{ blog.id }}" class="btn btn-danger btn-sm">Delete</a>
                 </td>
             </tr>
             {% endfor %}
